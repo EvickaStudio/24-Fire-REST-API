@@ -12,7 +12,6 @@ FireAPI is a Python wrapper for the 24Fire REST API that allows you to control b
 
 To use FireAPI, you need to have Python 3 installed on your system. You can import it with: `import fireapi`
 
-
 ## Usage
 
 To use FireAPI, you need to create an instance of the `FireAPI` class with your API key:
@@ -22,6 +21,7 @@ from fireapi import FireAPI
 
 API_KEY = "your-api-key-here"
 fire_api = FireAPI(API_KEY)
+
 ```
 You can then use the methods of the `FireAPI` class to interact with the 24Fire REST API:
 ```python
@@ -47,4 +47,4 @@ print(restart)
 ```
 
 ## Info
-Read the original documentation on [https://documenter.getpostman.com/view/18955936/2s93zB6hJu](https://documenter.getpostman.com/view/18955936/2s93zB6hJu)
+Read the original documentation for the 24Fire REST API on [https://documenter.getpostman.com/view/18955936/2s93zB6hJu](https://documenter.getpostman.com/view/18955936/2s93zB6hJu)
