@@ -10,13 +10,32 @@ FireAPI is a Python library designed to serve as a wrapper for the 24Fire REST A
 
 ## Installation
 
-To install FireAPI, use pip:
+To install FireAPI:
 
 ```bash
-pip install fireapi
+# Clone the repository
+git clone https://github.com/EvickaStudio/24-Fire-REST-API.git
+# Change directory
+cd 24-Fire-REST-API
 ```
 
 Ensure you have Python 3.x installed on your system.
+I am currently trying to get the package on PyPi, but i am having some issues with it.
+
+You can build the package yourself using the following command:
+
+```bash
+# Clone the repository
+git clone https://github.com/EvickaStudio/24-Fire-REST-API.git
+# Change directory
+cd 24-Fire-REST-API
+# Build the package
+python setup.py sdist bdist_wheel
+# Install the package
+pip install ./
+```
+
+Then install the package using pip:
 
 ## Usage
 

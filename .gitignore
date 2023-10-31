@@ -10,8 +10,9 @@ testing/
 # Distribution / packaging
 .Python
 build/
+testing/
 develop-eggs/
-#dist/
+dist/
 downloads/
 eggs/
 .eggs/
