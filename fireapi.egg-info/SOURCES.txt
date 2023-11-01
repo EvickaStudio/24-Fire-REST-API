@@ -1,0 +1,9 @@
+LICENSE.txt
+README.md
+setup.py
+fireapi/__init__.py
+fireapi.egg-info/PKG-INFO
+fireapi.egg-info/SOURCES.txt
+fireapi.egg-info/dependency_links.txt
+fireapi.egg-info/requires.txt
+fireapi.egg-info/top_level.txt

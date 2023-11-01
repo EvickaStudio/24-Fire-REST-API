@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: fireapi
+Version: 0.1
+Summary: A simple API wrapper for the 24Fire REST API
+Home-page: https://github.com/EvickaStudio/24-Fire-REST-API
+Author: EvickaStudio
+Author-email: kirenogfx@gmail.com
+License: MIT
+Keywords: API,24Fire,KVM,Server Management
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+License-File: LICENSE.txt
+Requires-Dist: requests
