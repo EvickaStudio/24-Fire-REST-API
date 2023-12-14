@@ -1,6 +1,10 @@
 # FireAPI
 
-FireAPI is a Python library designed to serve as a wrapper for the 24Fire REST API. It enables you to perform basic operations on a KVM server using a private API key. The library offers functionalities like:
+[![PyPI version](https://badge.fury.io/py/fireapi.svg)](https://badge.fury.io/py/fireapi)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/EvickaStudio/24-Fire-REST-API/blob/main/LICENSE)
+[![Code Style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
+FireAPI is a Python library that serves as a wrapper for the 24Fire REST API. It allows you to perform basic operations on a KVM server using a private API key. The library provides the following functionalities:
 
 - Get server configuration
 - Get server status
@@ -10,19 +14,13 @@ FireAPI is a Python library designed to serve as a wrapper for the 24Fire REST A
 
 ## Installation
 
-To install FireAPI:
+To install FireAPI, use pip:
 
 ```bash
-# Clone the repository
-git clone https://github.com/EvickaStudio/24-Fire-REST-API.git
-# Change directory
-cd 24-Fire-REST-API
+pip install fireapi
 ```
 
-Ensure you have Python 3.x installed on your system.
-I am currently trying to get the package on PyPi, but i am having some issues with it.
-
-You can build the package yourself using the following command:
+Alternatively, you can build and install the package manually:
 
 ```bash
 # Clone the repository
@@ -48,10 +46,10 @@ API_KEY = "your-api-key-here"
 fire_api = FireAPI(API_KEY)
 ```
 
-Once the instance is created, you can interact with the 24Fire REST API using the methods provided:
+Once the instance is created, you can interact with the 24Fire REST API using the provided methods:
 
 ```python
-# Get server config
+# Get server configuration
 config = fire_api.get_config()
 print(config)
 
@@ -74,4 +72,4 @@ print(restart)
 
 ## Documentation
 
-For more information on the 24Fire REST API, consult the [original documentation](https://documenter.getpostman.com/view/18955936/2s93zB6hJu).
+For more information on the 24Fire REST API, refer to the [original documentation](https://documenter.getpostman.com/view/18955936/2s93zB6hJu).
