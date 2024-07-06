@@ -1,7 +1,7 @@
 # FireAPI
 
 [![PyPI version](https://badge.fury.io/py/fireapi.svg)](https://badge.fury.io/py/fireapi)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/EvickaStudio/24-Fire-REST-API/blob/main/LICENSE)
+[![License](https://img.shields.io/badge/license-AGPL%20v3-blue.svg)](https://github.com/EvickaStudio/24-Fire-REST-API/blob/main/LICENSE)
 [![Code Style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 FireAPI is a Python library that serves as a wrapper for the 24Fire REST API. It allows you to perform basic operations on a KVM server using a private API key. The library provides the following functionalities:
