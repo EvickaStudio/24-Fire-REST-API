@@ -11,6 +11,7 @@ FireAPI is a Python library that serves as a wrapper for the 24Fire REST API. It
 - Start server
 - Stop server
 - Restart server
+- Async Support
 
 ## Installation
 
@@ -68,6 +69,26 @@ print(stop)
 # Restart server
 restart = fire_api.restart_server()
 print(restart)
+```
+
+When using the `async` methods, you can use the `await` keyword to wait for the response:
+
+```python
+import asyncio
+from fireapi import AsyncFireAPI
+
+async def main():
+    API_KEY = "your-api-key-here"
+    try:
+        fire_api = AsyncFireAPI(API_KEY)
+        # Get server configuration
+        config = await fire_api.get_config()
+        print(config)
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+if __name__ == "__main__":
+    asyncio.run(main())
 ```
 
 ## Documentation

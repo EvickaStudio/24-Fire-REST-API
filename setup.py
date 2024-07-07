@@ -11,7 +11,7 @@ setup(
     url="https://github.com/EvickaStudio/24-Fire-REST-API",  # GitHub repository URL
     keywords=["API", "24Fire", "KVM", "Server Management"],  # Keywords
     install_requires=[
-        "requests",
+        "aiohttp",
     ],
     classifiers=[
         "Programming Language :: Python :: 3",

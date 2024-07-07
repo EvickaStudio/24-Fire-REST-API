@@ -16,7 +16,13 @@ Usage:
    {'status': 'success', 'requestID': '....
    >>> datacenter = config["data"]["hostsystem"]["datacenter"]["name"]
    >>> processor = config["data"]["hostsystem"]["processor"]
+   >>> # Retrieve server configuration asynchronously
+   >>> config = await async_fire_api.get_config()
+   >>> print(config)
+   {'status': 'success', 'requestID': '....
+   >>> datacenter = config["data"]["hostsystem"]["datacenter"]["name"]
+   >>> processor = config["data"]["hostsystem"]["processor'}
 """
 
-from .api import FireAPI
+from .api import AsyncFireAPI, FireAPI
 from .exceptions import APIAuthenticationError, APIRequestError, FireAPIError
