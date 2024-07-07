@@ -20,11 +20,3 @@ Usage:
 
 from .api import FireAPI
 from .exceptions import APIAuthenticationError, APIRequestError, FireAPIError
-
-if __name__ == "__main__":
-    API_KEY = "your-api-key-here"
-    try:
-        fire_api = FireAPI(API_KEY)
-        print(fire_api.get_config())
-    except FireAPIError as e:
-        print(f"An error occurred: {e}")

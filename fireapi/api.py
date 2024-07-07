@@ -4,9 +4,10 @@ from typing import Dict
 import requests
 
 from .exceptions import APIAuthenticationError, APIRequestError, FireAPIError
+from .interface import IAPIOperations
 
 
-class FireAPI:
+class FireAPI(IAPIOperations):
     """A robust API wrapper for the 24Fire REST API."""
 
     def __init__(self, api_key: str, timeout: int = 5):
