@@ -7,7 +7,7 @@ with open("README.md", encoding="utf-8") as f:
 setup(
     name="fireapi",
     packages=["fireapi"],
-    version="0.2",
+    version="0.3",
     license="AGPL-3.0",
     description="A simple API wrapper for the 24Fire REST API",
     long_description=long_description,  # Set the long description
@@ -17,7 +17,7 @@ setup(
     url="https://github.com/EvickaStudio/24-Fire-REST-API",
     keywords=["API", "24Fire", "KVM", "Server Management"],
     install_requires=[
-        "aiohttp",
+        "aiohttp", "requests"
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
