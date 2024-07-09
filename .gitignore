@@ -1,6 +1,9 @@
 # Custom
-
+dist/
 te.py
+
+# Egg-info directory
+fireapi.egg-info/
 
 /.vscode
 
