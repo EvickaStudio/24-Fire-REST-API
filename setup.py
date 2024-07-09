@@ -1,15 +1,21 @@
 from distutils.core import setup
 
+# Read the contents of your README file
+with open("README.md", encoding="utf-8") as f:
+    long_description = f.read()
+
 setup(
-    name="fireapi",  # Package name
-    packages=["fireapi"],  # Same as "name"
-    version="0.2",  # Start version
-    license="AGPL-3.0",  # License type updated to AGPL-3.0
-    description="A simple API wrapper for the 24Fire REST API",  # Short description
-    author="EvickaStudio",  # Your name
-    author_email="hello@evicka.de",  # Your email
-    url="https://github.com/EvickaStudio/24-Fire-REST-API",  # GitHub repository URL
-    keywords=["API", "24Fire", "KVM", "Server Management"],  # Keywords
+    name="fireapi",
+    packages=["fireapi"],
+    version="0.2",
+    license="AGPL-3.0",
+    description="A simple API wrapper for the 24Fire REST API",
+    long_description=long_description,  # Set the long description
+    long_description_content_type="text/markdown",  # Specify the content type. Important for rendering markdown!
+    author="EvickaStudio",
+    author_email="hello@evicka.de",
+    url="https://github.com/EvickaStudio/24-Fire-REST-API",
+    keywords=["API", "24Fire", "KVM", "Server Management"],
     install_requires=[
         "aiohttp",
     ],
