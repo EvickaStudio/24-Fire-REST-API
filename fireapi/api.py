@@ -2,6 +2,7 @@ import logging
 from typing import Dict
 
 import aiohttp
+import requests
 
 from .exceptions import APIAuthenticationError, APIRequestError, FireAPIError
 from .interface import IAPIOperations
@@ -33,8 +34,11 @@ class FireAPI(IAPIOperations, BaseFireAPI):
             api_key (str): The private API key for authentication.
             timeout (int): Timeout for API requests in seconds (default: 5).
         """
-        self.session = aiohttp.ClientSession()
+        self.session = requests.Session()
+        self.base_url = "https://api.24fire.de/kvm/"
+        self.headers = {"X-FIRE-APIKEY": api_key}
         self.session.headers.update(self.headers)
+        self.timeout = timeout
 
     def _request(self, endpoint: str, method: str = "GET", data: Dict = None) -> Dict:
         """Makes an API request and handles potential errors.
@@ -70,7 +74,7 @@ class FireAPI(IAPIOperations, BaseFireAPI):
                 )
             return response.json()
 
-        except aiohttp.ClientError as e:
+        except requests.RequestException as e:
             logging.error(f"Request failed: {e}")
             raise FireAPIError(f"API request failed: {e}") from e
 
