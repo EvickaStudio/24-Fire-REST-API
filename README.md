@@ -20,6 +20,9 @@ FireAPI is a Python library that serves as a wrapper for the 24Fire REST API. It
 - Retrieve monitoring incidences (exclusive to '24fire+' subscribers)
 - Async Support
 
+> [!NOTE]
+> Disclaimer: Unable to test '24fire+' exclusive features due to lack of subscription. If you encounter issues, please report them on GitHub.
+
 ## Installation
 
 To install FireAPI, use pip:
