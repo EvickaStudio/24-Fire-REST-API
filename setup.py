@@ -16,9 +16,7 @@ setup(
     author_email="hello@evicka.de",
     url="https://github.com/EvickaStudio/24-Fire-REST-API",
     keywords=["API", "24Fire", "KVM", "Server Management"],
-    install_requires=[
-        "aiohttp", "requests"
-    ],
+    install_requires=["aiohttp", "requests"],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: GNU Affero General Public License v3",
