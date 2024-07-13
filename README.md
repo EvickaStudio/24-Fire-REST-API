@@ -95,4 +95,4 @@ if __name__ == "__main__":
 
 ## Documentation
 
-For more information on the 24Fire REST API, refer to the [original documentation](https://documenter.getpostman.com/view/18955936/2s93zB6hJu).
+For more information on the 24Fire REST API, refer to the [original documentation](https://apidocs.24fire.de/).
