@@ -7,7 +7,7 @@ with open("README.md", encoding="utf-8") as f:
 setup(
     name="fireapi",
     packages=["fireapi"],
-    version="0.3",
+    version="0.4",
     license="AGPL-3.0",
     description="A simple API wrapper for the 24Fire REST API",
     long_description=long_description,  # Set the long description
