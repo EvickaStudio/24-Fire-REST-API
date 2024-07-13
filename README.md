@@ -13,6 +13,11 @@ FireAPI is a Python library that serves as a wrapper for the 24Fire REST API. It
 - Start server
 - Stop server
 - Restart server
+- Delete backup (exclusive to '24fire+' subscribers)
+- Create backup (exclusive to '24fire+' subscribers)
+- List all backups (exclusive to '24fire+' subscribers)
+- Retrieve monitoring timings (exclusive to '24fire+' subscribers)
+- Retrieve monitoring incidences (exclusive to '24fire+' subscribers)
 - Async Support
 
 ## Installation
@@ -31,7 +36,7 @@ git clone https://github.com/EvickaStudio/24-Fire-REST-API.git
 # Change directory
 cd 24-Fire-REST-API
 # Build the package
-python setup.py sdist bdist_wheel
+python -m build
 # Install the package
 pip install ./
 ```
@@ -71,6 +76,21 @@ print(stop)
 # Restart server
 restart = fire_api.restart_server()
 print(restart)
+
+# Delete a backup
+delete_backup = fire_api.backup_delete("backup_id")
+
+# Create a backup
+create_backup = fire_api.backup_create("Backup description")
+
+# List all backups
+backups = fire_api.backup_list()
+
+# Retrieve monitoring timings
+timings = fire_api.timings()
+
+# Retrieve monitoring incidences
+incidences = fire_api.incidences()
 ```
 
 When using the `async` methods, you can use the `await` keyword to wait for the response:
@@ -86,6 +106,7 @@ async def main():
         # Get server configuration
         config = await fire_api.get_config()
         print(config)
+        # And the other methods that FireAPI provides
     except Exception as e:
         print(f"An error occurred: {e}")
 
