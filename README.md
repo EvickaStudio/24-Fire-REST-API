@@ -6,22 +6,34 @@
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 [![Code Style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
+## Overview
+
 FireAPI is a Python library that serves as a wrapper for the 24Fire REST API. It allows you to perform basic operations on a KVM server using a private API key. The library provides the following functionalities:
 
-- Get server configuration
-- Get server status
-- Start server
-- Stop server
-- Restart server
-- Delete backup (exclusive to '24fire+' subscribers)
-- Create backup (exclusive to '24fire+' subscribers)
-- List all backups (exclusive to '24fire+' subscribers)
-- Retrieve monitoring timings (exclusive to '24fire+' subscribers)
-- Retrieve monitoring incidences (exclusive to '24fire+' subscribers)
-- Async Support
+* Get server configuration
+* Get server status
+* Start server
+* Stop server
+* Restart server
+* Delete backup (exclusive to `24fire+` subscribers)
+* Create backup (exclusive to `24fire+` subscribers)
+* List all backups (exclusive to `24fire+` subscribers)
+* Retrieve monitoring timings (exclusive to `24fire+` subscribers)
+* Retrieve monitoring incidences (exclusive to `24fire+` subscribers)
+* Async Support
 
 > [!NOTE]
-> Disclaimer: Unable to test '24fire+' exclusive features due to lack of subscription. If you encounter issues, please report them on GitHub.
+> Disclaimer: Unable to test `24fire+` exclusive features due to lack of subscription. If you encounter issues, please report them on GitHub.
+
+## Table of Contents
+
+* [Installation](#installation)
+* [Usage](#usage)
+  * [Synchronous Usage](#synchronous-usage)
+  * [Asynchronous Usage](#asynchronous-usage)
+* [Documentation](#documentation)
+* [Contributing](#contributing)
+* [License](#license)
 
 ## Installation
 
@@ -34,19 +46,15 @@ pip install fireapi
 Alternatively, you can build and install the package manually:
 
 ```bash
-# Clone the repository
 git clone https://github.com/EvickaStudio/24-Fire-REST-API.git
-# Change directory
 cd 24-Fire-REST-API
-# Build the package
 python -m build
-# Install the package
 pip install ./
 ```
 
-Then install the package using pip:
-
 ## Usage
+
+### Synchronous Usage
 
 To get started, import the `FireAPI` class from the `fireapi` package and instantiate it using your API key:
 
@@ -96,6 +104,8 @@ timings = fire_api.timings()
 incidences = fire_api.incidences()
 ```
 
+### Asynchronous Usage
+
 When using the `async` methods, you can use the `await` keyword to wait for the response:
 
 ```python
@@ -120,3 +130,11 @@ if __name__ == "__main__":
 ## Documentation
 
 For more information on the 24Fire REST API, refer to the [original documentation](https://apidocs.24fire.de/).
+
+## Contributing
+
+Contributions are welcome! If you encounter any issues or have suggestions for improvements, please open an issue or submit a pull request on the [GitHub repository](https://github.com/EvickaStudio/24-Fire-REST-API).
+
+## License
+
+This project is licensed under the [AGPL v3 License](LICENSE).
