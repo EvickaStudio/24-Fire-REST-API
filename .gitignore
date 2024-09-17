@@ -1,6 +1,7 @@
 # Custom
 dist/
 te.py
+.pypirc
 
 # Egg-info directory
 fireapi.egg-info/
