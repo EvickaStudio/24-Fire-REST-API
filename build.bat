@@ -48,6 +48,13 @@ set newVersion=%major%.%minor%.%patch%
     echo __version__ = "%newVersion%"
 ) > src\fireapi\version.py
 
+:: Run black for code formatting
+black .
+if errorlevel 1 (
+    echo Code formatting failed.
+    exit /b 1
+)
+
 :: Build the library
 python -m build
 
