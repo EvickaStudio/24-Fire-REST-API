@@ -1,4 +1,10 @@
-from distutils.core import setup
+import sys
+from setuptools import setup, find_packages
+
+# Ensure the src directory is in the sys.path
+sys.path.insert(0, "src")
+
+from fireapi.version import __version__
 
 # Read the contents of your README file
 with open("README.md", encoding="utf-8") as f:
@@ -6,12 +12,13 @@ with open("README.md", encoding="utf-8") as f:
 
 setup(
     name="fireapi",
-    packages=["fireapi"],
-    version="0.4",
+    packages=find_packages(where="src"),
+    package_dir={"": "src"},
+    version=__version__,
     license="AGPL-3.0",
     description="A simple API wrapper for the 24Fire REST API",
-    long_description=long_description,  # Set the long description
-    long_description_content_type="text/markdown",  # Specify the content type. Important for rendering markdown!
+    long_description=long_description,
+    long_description_content_type="text/markdown",
     author="EvickaStudio",
     author_email="hello@evicka.de",
     url="https://github.com/EvickaStudio/24-Fire-REST-API",
