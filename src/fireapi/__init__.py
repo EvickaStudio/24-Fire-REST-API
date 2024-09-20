@@ -2,7 +2,7 @@
 A simple API wrapper for the 24Fire REST API to control basic functions of a KVM server with a private API key.
 
 Author: EvickaStudio
-Original documentation: [https://documenter.getpostman.com/view/18955936/2s93zB6hJu](https://documenter.getpostman.com/view/18955936/2s93zB6hJu)
+Original documentation: [https://apidocs.24fire.de/](https://apidocs.24fire.de/)
 
 Usage:
 
