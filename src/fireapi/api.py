@@ -5,7 +5,7 @@ import aiohttp
 import requests
 
 from .base import BaseFireAPI
-from .exceptions import APIAuthenticationError, APIRequestError, FireAPIError
+from .exceptions import APIAuthenticationError, FireAPIError
 
 
 class FireAPI(BaseFireAPI):
