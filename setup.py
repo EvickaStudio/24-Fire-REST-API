@@ -1,5 +1,6 @@
 import sys
-from setuptools import setup, find_packages
+
+from setuptools import find_packages, setup
 
 # Ensure the src directory is in the sys.path
 sys.path.insert(0, "src")

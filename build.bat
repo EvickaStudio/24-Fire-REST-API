@@ -55,6 +55,12 @@ if errorlevel 1 (
     exit /b 1
 )
 
+isort .
+if errorlevel 1 (
+    echo Imports sorting failed.
+    exit /b 1
+)
+
 :: Build the library
 python -m build
 
