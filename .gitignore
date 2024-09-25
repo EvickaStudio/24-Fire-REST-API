@@ -2,6 +2,7 @@
 dist/
 te.py
 .pypirc
+.idea/
 
 # Egg-info directory
 fireapi.egg-info/
