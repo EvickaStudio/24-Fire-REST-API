@@ -1,0 +1,8 @@
+anyio>=4.4.0
+aiohttp
+requests>=2.32.2
+zipp>=3.19.1
+isort
+black
+mypy
+types-requests
