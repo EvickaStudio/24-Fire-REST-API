@@ -147,4 +147,4 @@ This project is licensed under the [AGPL v3 License](LICENSE).
 
 **Non-Permissive License**
 
-We noticed that this project uses a license which requires less permissive conditions such as disclosing the source code, stating changes, or redistributing the source under the same license. It is advised to further consult the license terms before use.
+I noticed that this project uses a license which requires less permissive conditions such as disclosing the source code, stating changes, or redistributing the source under the same license. It is advised to further consult the license terms before use.
