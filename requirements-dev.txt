@@ -6,3 +6,5 @@ isort
 black
 mypy
 types-requests
+flake8
+tox
