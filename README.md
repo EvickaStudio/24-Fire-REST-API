@@ -37,6 +37,7 @@ FireAPI is a Python library that serves as a wrapper for the 24Fire REST API. It
   - [Documentation](#documentation)
   - [Contributing](#contributing)
   - [License](#license)
+  - [Alert](#alert)
 
 ## Installation
 
@@ -141,3 +142,9 @@ Contributions are welcome! If you encounter any issues or have suggestions for i
 ## License
 
 This project is licensed under the [AGPL v3 License](LICENSE).
+
+## Alert
+
+**Non-Permissive License**
+
+We noticed that this project uses a license which requires less permissive conditions such as disclosing the source code, stating changes, or redistributing the source under the same license. It is advised to further consult the license terms before use.
