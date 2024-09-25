@@ -1,13 +1,13 @@
 """This module contains the abstract base class for FireAPI."""
 
 from abc import ABC, abstractmethod
-from typing import Dict
+from typing import Any, Dict, Optional
 
 
 class BaseFireAPI(ABC):
     """Abstract base class for FireAPI."""
 
-    def __init__(self, apiKey: str, timeout: int = 5):
+    def __init__(self, apiKey: str, timeout: int = 5) -> None:
         """Initializes a new FireAPI instance."""
         self.apiKey = apiKey
         self.baseUrl = "https://api.24fire.de/kvm"
@@ -19,17 +19,19 @@ class BaseFireAPI(ABC):
         self.monitoring = self.Monitoring(self)
 
     @abstractmethod
-    def _request(self, endpoint: str, method: str = "GET", data: Dict = None) -> Dict:
+    def _request(
+        self, endpoint: str, method: str = "GET", data: Optional[Dict[str, Any]] = None
+    ) -> Dict[str, Any]:
         """Abstract method for making API requests."""
         pass
 
     class VM:
         """Class for VM-related methods."""
 
-        def __init__(self, api):
+        def __init__(self, api: "BaseFireAPI") -> None:
             self.api = api
 
-        def getConfig(self) -> Dict:
+        def getConfig(self) -> Dict[str, Any]:
             """
             Retrieve the server configuration as a JSON object.
 
@@ -92,7 +94,7 @@ class BaseFireAPI(ABC):
             """
             return self.api._request("config")
 
-        def getStatus(self) -> Dict:
+        def getStatus(self) -> Dict[str, Any]:
             """
             Retrieve the server status as a JSON object.
 
@@ -131,7 +133,7 @@ class BaseFireAPI(ABC):
             """
             return self.api._request("status")
 
-        def startServer(self) -> Dict:
+        def startServer(self) -> Dict[str, Any]:
             """
             Start the server and return the status as a JSON object.
 
@@ -152,7 +154,7 @@ class BaseFireAPI(ABC):
             """
             return self.api._request("status/start", method="POST")
 
-        def stopServer(self) -> Dict:
+        def stopServer(self) -> Dict[str, Any]:
             """
             Stop the server and return the status as a JSON object.
 
@@ -173,7 +175,7 @@ class BaseFireAPI(ABC):
             """
             return self.api._request("status/stop", method="POST")
 
-        def restartServer(self) -> Dict:
+        def restartServer(self) -> Dict[str, Any]:
             """
             Restart the server and return the status as a JSON object.
 
@@ -197,10 +199,10 @@ class BaseFireAPI(ABC):
     class Backup:
         """Class for Backup-related methods."""
 
-        def __init__(self, api):
+        def __init__(self, api: "BaseFireAPI") -> None:
             self.api = api
 
-        def deleteBackup(self, backup_id: str) -> Dict:
+        def deleteBackup(self, backup_id: str) -> Dict[str, Any]:
             """
             Delete a backup.
 
@@ -228,7 +230,7 @@ class BaseFireAPI(ABC):
                 f"backup/delete?backup_id={backup_id}", method="DELETE"
             )
 
-        def createBackup(self, description: str) -> Dict:
+        def createBackup(self, description: str) -> Dict[str, Any]:
             """
             Create a backup with a description.
 
@@ -258,7 +260,7 @@ class BaseFireAPI(ABC):
                 "backup/create", method="POST", data={"description": description}
             )
 
-        def listBackup(self) -> Dict:
+        def listBackup(self) -> Dict[str, Any]:
             """
             List all backups.
 
@@ -301,10 +303,10 @@ class BaseFireAPI(ABC):
     class Monitoring:
         """Class for Monitoring-related methods."""
 
-        def __init__(self, api):
+        def __init__(self, api: "BaseFireAPI") -> None:
             self.api = api
 
-        def timings(self) -> Dict:
+        def timings(self) -> Dict[str, Any]:
             """
             Retrieve monitoring timings.
 
@@ -342,7 +344,7 @@ class BaseFireAPI(ABC):
             """
             return self.api._request("monitoring/timings")
 
-        def incidences(self) -> Dict:
+        def incidences(self) -> Dict[str, Any]:
             """
             Retrieve monitoring incidences.
 
