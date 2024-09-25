@@ -11,13 +11,13 @@ from .exceptions import APIAuthenticationError, FireAPIError
 class FireAPI(BaseFireAPI):
     """Synchronous API wrapper for the 24Fire REST API."""
 
-    def __init__(self, api_key: str, timeout: int = 5):
-        super().__init__(api_key, timeout)
+    def __init__(self, apiKey: str, timeout: int = 5):
+        super().__init__(apiKey, timeout)
         self.session = requests.Session()
         self.session.headers.update(self.headers)
 
     def _construct_url(self, endpoint: str) -> str:
-        return f"{self.base_url}/{endpoint}"
+        return f"{self.baseUrl}/{endpoint}"
 
     def _handle_response(self, response: requests.Response) -> Dict:
         if response.status_code == 401:
@@ -62,7 +62,7 @@ class AsyncFireAPI(BaseFireAPI):
     """Asynchronous API wrapper for the 24Fire REST API."""
 
     def _construct_url(self, endpoint: str) -> str:
-        return f"{self.base_url}/{endpoint}"
+        return f"{self.baseUrl}/{endpoint}"
 
     async def _handle_response(self, response: aiohttp.ClientResponse) -> Dict:
         if response.status == 401:

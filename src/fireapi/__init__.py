@@ -7,17 +7,17 @@ Original documentation: [https://apidocs.24fire.de/](https://apidocs.24fire.de/)
 Usage:
 
    >>> from fireapi import FireAPI
-   >>> API_KEY = "your-api-key-here"
-   >>> fire_api = FireAPI(API_KEY)
+   >>> apiKey = "your-api-key-here"
+   >>> fireApi = FireAPI(apiKey)
 
    >>> # Retrieve server configuration
-   >>> config = fire_api.get_config()
+   >>> config = fireApi.vm.getConfig()
    >>> print(config)
    {'status': 'success', 'requestID': '....
    >>> datacenter = config["data"]["hostsystem"]["datacenter"]["name"]
    >>> processor = config["data"]["hostsystem"]["processor"]
    >>> # Retrieve server configuration asynchronously
-   >>> config = await async_fire_api.get_config()
+   >>> config = await async_fireApi.vm.getConfig()
    >>> print(config)
    {'status': 'success', 'requestID': '....
    >>> datacenter = config["data"]["hostsystem"]["datacenter"]["name"]

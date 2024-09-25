@@ -27,13 +27,16 @@ FireAPI is a Python library that serves as a wrapper for the 24Fire REST API. It
 
 ## Table of Contents
 
-* [Installation](#installation)
-* [Usage](#usage)
-  * [Synchronous Usage](#synchronous-usage)
-  * [Asynchronous Usage](#asynchronous-usage)
-* [Documentation](#documentation)
-* [Contributing](#contributing)
-* [License](#license)
+- [FireAPI](#fireapi)
+  - [Overview](#overview)
+  - [Table of Contents](#table-of-contents)
+  - [Installation](#installation)
+  - [Usage](#usage)
+    - [Synchronous Usage](#synchronous-usage)
+    - [Asynchronous Usage](#asynchronous-usage)
+  - [Documentation](#documentation)
+  - [Contributing](#contributing)
+  - [License](#license)
 
 ## Installation
 
@@ -61,47 +64,47 @@ To get started, import the `FireAPI` class from the `fireapi` package and instan
 ```python
 from fireapi import FireAPI
 
-API_KEY = "your-api-key-here"
-fire_api = FireAPI(API_KEY)
+apiKey = "your-api-key-here"
+fireApi = FireAPI(apiKey)
 ```
 
 Once the instance is created, you can interact with the 24Fire REST API using the provided methods:
 
 ```python
 # Get server configuration
-config = fire_api.get_config()
+config = fireApi.vm.getConfig()
 print(config)
 
 # Get server status
-status = fire_api.get_status()
+status = fireApi.vm.getStatus()
 print(status)
 
 # Start server
-start = fire_api.start_server()
+start = fireApi.vm.startServer()
 print(start)
 
 # Stop server
-stop = fire_api.stop_server()
+stop = fireApi.vm.stopServer()
 print(stop)
 
 # Restart server
-restart = fire_api.restart_server()
+restart = fireApi.vm.restartServer()
 print(restart)
 
 # Delete a backup
-delete_backup = fire_api.backup_delete("backup_id")
+delete_backup = fireApi.backup.deleteBackup("backup_id")
 
 # Create a backup
-create_backup = fire_api.backup_create("Backup description")
+create_backup = fireApi.backup.createBackup("Backup description")
 
 # List all backups
-backups = fire_api.backup_list()
+backups = fireApi.backup.listBackup()
 
 # Retrieve monitoring timings
-timings = fire_api.timings()
+timings = fireApi.monitoring.timings()
 
 # Retrieve monitoring incidences
-incidences = fire_api.incidences()
+incidences = fireApi.monitoring.incidences()
 ```
 
 ### Asynchronous Usage
@@ -113,11 +116,11 @@ import asyncio
 from fireapi import AsyncFireAPI
 
 async def main():
-    API_KEY = "your-api-key-here"
+    apiKey = "your-api-key-here"
     try:
-        fire_api = AsyncFireAPI(API_KEY)
+        fireApi = AsyncFireAPI(apiKey)
         # Get server configuration
-        config = await fire_api.get_config()
+        config = await fireApi.vm.getConfig()
         print(config)
         # And the other methods that FireAPI provides
     except Exception as e:
