@@ -59,11 +59,13 @@ where = ["src"]
 
 [tool.setuptools_scm]
 write_to = "src/fireapi/version.py"
-version_scheme = "python-simplified-semver"
-local_scheme = "no-local-version"
+version_scheme = "release-branch-semver"
+local_scheme = "node-and-timestamp"
 git_describe_command = "git describe --dirty --tags --long --match v*"
 tag_regex = '^(?P<version>v\d+\.\d+\.\d+)$'
 fallback_version = "0.0.0"
+normalize = true
+version_cls = "setuptools_scm.version.SimplifiedVersion"
 
 [tool.black]
 line-length = 88
