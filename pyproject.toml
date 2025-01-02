@@ -59,10 +59,11 @@ where = ["src"]
 
 [tool.setuptools_scm]
 write_to = "src/fireapi/version.py"
-version_scheme = "post-release"
-local_scheme = "no-local-version"
+version_scheme = "guess-next-dev"
+local_scheme = "node-and-date"
 git_describe_command = "git describe --dirty --tags --long --match v*"
 fallback_version = "0.0.0"
+tag_regex = "^v[0-9]+\\.[0-9]+\\.[0-9]+$"
 
 [tool.black]
 line-length = 88
