@@ -62,8 +62,8 @@ write_to = "src/fireapi/version.py"
 version_scheme = "guess-next-dev"
 local_scheme = "node-and-date"
 git_describe_command = "git describe --dirty --tags --long --match v*"
+tag_regex = '^(?P<version>v\d+\.\d+\.\d+)$'
 fallback_version = "0.0.0"
-tag_regex = "^v[0-9]+\\.[0-9]+\\.[0-9]+$"
 
 [tool.black]
 line-length = 88
