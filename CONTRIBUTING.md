@@ -11,7 +11,7 @@ By participating in this project, you agree to maintain a welcoming, inclusive, 
 1. Fork the repository on GitHub
 2. Clone your fork locally:
    ```bash
-   git clone https://github.com/your-username/24-Fire-REST-API.git
+   git clone https://github.com/EvickaStudio/24-Fire-REST-API.git
    cd 24-Fire-REST-API
    ```
 3. Create a virtual environment and install dependencies:
