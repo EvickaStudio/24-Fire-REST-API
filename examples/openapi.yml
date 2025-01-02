@@ -1,0 +1,445 @@
+openapi: 3.0.3
+info:
+  title: 24fire KVM REST API
+  description: >
+    A REST API providing functions to manage and monitor KVM servers on 24fire.
+    Some endpoints require an active 24fire+ subscription.
+  version: "1.0.0"
+servers:
+  - url: https://api.24fire.de
+
+tags:
+  - name: Backups
+    description: Endpoints for backup management (24fire+ required)
+  - name: Monitoring
+    description: Endpoints for retrieving monitoring data (24fire+ required)
+  - name: Server
+    description: Endpoints for checking server status or sending power commands
+  - name: Configuration
+    description: Endpoint for retrieving KVM server configuration
+
+components:
+  securitySchemes:
+    X-FIRE-APIKEY:
+      type: apiKey
+      in: header
+      name: X-FIRE-APIKEY
+
+  schemas:
+    BackupItem:
+      type: object
+      properties:
+        backup_id:
+          type: string
+        backup_os:
+          type: string
+        backup_description:
+          type: string
+        size:
+          type: integer
+          description: Size in MB or another unit
+        created:
+          type: string
+          format: date-time
+        status:
+          type: string
+          description: Backup status (e.g. finished, in-progress)
+    BasicResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: e.g. "success"
+        requestID:
+          type: string
+        message:
+          type: string
+        data:
+          type: object
+          nullable: true
+    BackupListResponse:
+      allOf:
+        - $ref: '#/components/schemas/BasicResponse'
+        - type: object
+          properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/BackupItem'
+    CreateBackupResponse:
+      allOf:
+        - $ref: '#/components/schemas/BasicResponse'
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                backup_id:
+                  type: string
+    DeleteBackupResponse:
+      $ref: '#/components/schemas/BasicResponse'
+    MonitoringTimingsResponse:
+      allOf:
+        - $ref: '#/components/schemas/BasicResponse'
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                timings:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      date:
+                        type: string
+                        format: date-time
+                      cpu:
+                        type: string
+                      mem:
+                        type: string
+                      ping:
+                        type: integer
+    MonitoringIncidencesResponse:
+      allOf:
+        - $ref: '#/components/schemas/BasicResponse'
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                statistic:
+                  type: object
+                  description: Aggregated outage statistics
+                incidences:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      start:
+                        type: string
+                        format: date-time
+                      end:
+                        type: string
+                        format: date-time
+                      downtime:
+                        type: integer
+                      type:
+                        type: string
+    ServerStatusResponse:
+      allOf:
+        - $ref: '#/components/schemas/BasicResponse'
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                status:
+                  type: string
+                  description: e.g. "running", "stopped"
+                uptime:
+                  type: integer
+                  description: Uptime in seconds
+                task:
+                  type: string
+                  nullable: true
+                usage:
+                  type: object
+                  properties:
+                    cpu:
+                      type: object
+                      properties:
+                        data:
+                          type: string
+                        unit:
+                          type: string
+                    mem:
+                      type: object
+                      properties:
+                        data:
+                          type: string
+                        unit:
+                          type: string
+                    nvme_storage:
+                      type: object
+                      properties:
+                        data:
+                          type: number
+                        unit:
+                          type: string
+    PowerActionResponse:
+      $ref: '#/components/schemas/BasicResponse'
+    VMConfigResponse:
+      allOf:
+        - $ref: '#/components/schemas/BasicResponse'
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                hostsystem:
+                  type: object
+                  properties:
+                    datacenter:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        country:
+                          type: string
+                        city:
+                          type: string
+                    name:
+                      type: string
+                    node:
+                      type: string
+                    processor:
+                      type: string
+                    memory:
+                      type: string
+                    nvme_hard_drives:
+                      type: string
+                config:
+                  type: object
+                  properties:
+                    cores:
+                      type: integer
+                    mem:
+                      type: integer
+                      description: RAM size in MB
+                    disk:
+                      type: integer
+                      description: Disk size in GB
+                    os:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        displayname:
+                          type: string
+                    username:
+                      type: string
+                    password:
+                      type: string
+                    hostname:
+                      type: string
+                    network_speed:
+                      type: integer
+                    backup_slots:
+                      type: integer
+                    ipv4:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          ip_address:
+                            type: string
+                          ip_gateway:
+                            type: string
+                          ddos_protection:
+                            type: string
+                          rdns:
+                            type: string
+                    ipv6:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          ip_address:
+                            type: string
+                          ip_gateway:
+                            type: string
+                          requires_restart:
+                            type: boolean
+
+security:
+  - X-FIRE-APIKEY: []
+
+paths:
+  /kvm/backup/list:
+    get:
+      tags:
+        - Backups
+      summary: List backups
+      description: List all available backups for this KVM server (24fire+ required).
+      operationId: listBackups
+      security:
+        - X-FIRE-APIKEY: []
+      responses:
+        '200':
+          description: Successful retrieval of backup list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BackupListResponse'
+
+  /kvm/backup/create:
+    post:
+      tags:
+        - Backups
+      summary: Create a backup
+      description: Create a new backup for this KVM server (24fire+ required).
+      operationId: createBackup
+      security:
+        - X-FIRE-APIKEY: []
+      requestBody:
+        required: false
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+                  maxLength: 24
+                  description: Description or note for the backup
+      responses:
+        '200':
+          description: Backup creation started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateBackupResponse'
+
+  /kvm/backup/delete:
+    delete:
+      tags:
+        - Backups
+      summary: Delete a backup
+      description: Delete an existing backup by backup_id (24fire+ required).
+      operationId: deleteBackup
+      security:
+        - X-FIRE-APIKEY: []
+      parameters:
+        - in: query
+          name: backup_id
+          required: true
+          schema:
+            type: string
+          description: Backup ID to delete
+      responses:
+        '200':
+          description: Backup deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteBackupResponse'
+
+  /kvm/monitoring/timings:
+    get:
+      tags:
+        - Monitoring
+      summary: Retrieve monitoring timings
+      description: Get CPU, RAM usage, and ping metrics for this KVM server (24fire+ required).
+      operationId: getMonitoringTimings
+      security:
+        - X-FIRE-APIKEY: []
+      responses:
+        '200':
+          description: Timings retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MonitoringTimingsResponse'
+
+  /kvm/monitoring/incidences:
+    get:
+      tags:
+        - Monitoring
+      summary: Retrieve monitoring incidences
+      description: Get outage data, downtime, and statistics for this KVM server (24fire+ required).
+      operationId: getMonitoringIncidences
+      security:
+        - X-FIRE-APIKEY: []
+      responses:
+        '200':
+          description: Incidences retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MonitoringIncidencesResponse'
+
+  /kvm/status:
+    get:
+      tags:
+        - Server
+      summary: Retrieve server status
+      description: Get the current status of your KVM server (running, stopped, etc.).
+      operationId: getServerStatus
+      security:
+        - X-FIRE-APIKEY: []
+      responses:
+        '200':
+          description: Status retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerStatusResponse'
+
+  /kvm/status/start:
+    post:
+      tags:
+        - Server
+      summary: Start the server
+      description: Send a power-on command to the KVM server.
+      operationId: startServer
+      security:
+        - X-FIRE-APIKEY: []
+      responses:
+        '200':
+          description: VM start command accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PowerActionResponse'
+
+  /kvm/status/stop:
+    post:
+      tags:
+        - Server
+      summary: Stop the server
+      description: Send a power-off command to the KVM server.
+      operationId: stopServer
+      security:
+        - X-FIRE-APIKEY: []
+      responses:
+        '200':
+          description: VM stop command accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PowerActionResponse'
+
+  /kvm/status/restart:
+    post:
+      tags:
+        - Server
+      summary: Restart the server
+      description: Send a reboot command to the KVM server.
+      operationId: restartServer
+      security:
+        - X-FIRE-APIKEY: []
+      responses:
+        '200':
+          description: VM restart command accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PowerActionResponse'
+
+  /kvm/config:
+    get:
+      tags:
+        - Configuration
+      summary: Retrieve server configuration
+      description: Obtain detailed KVM server configuration data (CPU, RAM, storage, IP addresses, etc.).
+      operationId: getVMConfig
+      security:
+        - X-FIRE-APIKEY: []
+      responses:
+        '200':
+          description: VM configuration retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VMConfigResponse'

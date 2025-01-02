@@ -4,8 +4,8 @@ from typing import Any, Coroutine, Dict, Optional
 import aiohttp
 import requests
 
+from .._exceptions import APIAuthenticationError, FireAPIError
 from .base import BaseFireAPI
-from .exceptions import APIAuthenticationError, FireAPIError
 
 
 class FireAPI(BaseFireAPI):

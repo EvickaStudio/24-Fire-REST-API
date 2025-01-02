@@ -5,7 +5,7 @@ class FireAPIError(Exception):
 
 
 class APIRequestError(FireAPIError):
-    """Raised when an API request fails due to an error in the request itself."""
+    """Raised when an API request fails due to an error in the request."""
 
     pass
 

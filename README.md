@@ -8,22 +8,16 @@
 
 ## Overview
 
-FireAPI is a Python library that serves as a wrapper for the 24Fire REST API. It allows you to perform basic operations on a KVM server using a private API key. The library provides the following functionalities:
+FireAPI is a Python client library that provides convenient access to the [24Fire REST API](https://apidocs.24fire.de/), allowing you to control KVM server functions using a private API key. The library supports both synchronous and asynchronous operations and includes type definitions for all request parameters and response fields.
 
-* Get server configuration
-* Get server status
-* Start server
-* Stop server
-* Restart server
-* Delete backup (exclusive to `24fire+` subscribers)
-* Create backup (exclusive to `24fire+` subscribers)
-* List all backups (exclusive to `24fire+` subscribers)
-* Retrieve monitoring timings (exclusive to `24fire+` subscribers)
-* Retrieve monitoring incidences (exclusive to `24fire+` subscribers)
-* Async Support
+- Get server configuration
+- Get server status
+- Start, stop, and restart the server
+- Backup management (create, delete, list) *(exclusive to `24fire+` subscribers)*
+- Retrieve monitoring timings and incidences *(exclusive to `24fire+` subscribers)*
 
 > [!NOTE]
-> Disclaimer: Unable to test `24fire+` exclusive features due to lack of subscription. If you encounter issues, please report them on GitHub.
+> Some features are exclusive to `24fire+` subscribers and have not been tested due to lack of subscription. If you encounter issues, please report them on GitHub.
 
 ## Table of Contents
 
@@ -38,10 +32,11 @@ FireAPI is a Python library that serves as a wrapper for the 24Fire REST API. It
   - [Contributing](#contributing)
   - [License](#license)
   - [Alert](#alert)
+    - [Non-Permissive License](#non-permissive-license)
 
 ## Installation
 
-To install FireAPI, use pip:
+Install FireAPI using pip:
 
 ```bash
 pip install fireapi
@@ -58,82 +53,61 @@ pip install ./
 
 ## Usage
 
+The FireAPI library provides both synchronous and asynchronous clients.
+
 ### Synchronous Usage
 
-To get started, import the `FireAPI` class from the `fireapi` package and instantiate it using your API key:
+Import the `FireAPI` class and instantiate it with your API key:
 
 ```python
 from fireapi import FireAPI
 
-apiKey = "your-api-key-here"
-fireApi = FireAPI(apiKey)
+api_key = "your-api-key-here"
+fire_api = FireAPI(api_key)
 ```
 
-Once the instance is created, you can interact with the 24Fire REST API using the provided methods:
+Use the provided methods to interact with the API:
 
 ```python
 # Get server configuration
-config = fireApi.vm.getConfig()
+config = fire_api.vm.get_config()
 print(config)
 
-# Get server status
-status = fireApi.vm.getStatus()
-print(status)
-
-# Start server
-start = fireApi.vm.startServer()
-print(start)
-
-# Stop server
-stop = fireApi.vm.stopServer()
-print(stop)
-
-# Restart server
-restart = fireApi.vm.restartServer()
-print(restart)
-
-# Delete a backup
-delete_backup = fireApi.backup.deleteBackup("backup_id")
-
-# Create a backup
-create_backup = fireApi.backup.createBackup("Backup description")
-
-# List all backups
-backups = fireApi.backup.listBackup()
-
-# Retrieve monitoring timings
-timings = fireApi.monitoring.timings()
-
-# Retrieve monitoring incidences
-incidences = fireApi.monitoring.incidences()
+# Start the server
+response = fire_api.vm.start_server()
+print(response)
 ```
+
+For more examples, see the [synchronous example](examples/synchronous_example.py).
 
 ### Asynchronous Usage
 
-When using the `async` methods, you can use the `await` keyword to wait for the response:
+Import the `AsyncFireAPI` class and use it within an asynchronous function:
 
 ```python
 import asyncio
 from fireapi import AsyncFireAPI
 
 async def main():
-    apiKey = "your-api-key-here"
-    try:
-        fireApi = AsyncFireAPI(apiKey)
-        # Get server configuration
-        config = await fireApi.vm.getConfig()
-        print(config)
-        # And the other methods that FireAPI provides
-    except Exception as e:
-        print(f"An error occurred: {e}")
+    api_key = "your-api-key-here"
+    fire_api = AsyncFireAPI(api_key)
+    
+    # Get server configuration
+    config = await fire_api.vm.get_config()
+    print(config)
+    
+    # Start the server
+    response = await fire_api.vm.start_server()
+    print(response)
 
-if __name__ == "__main__":
-    asyncio.run(main())
+asyncio.run(main())
 ```
+
+For more examples, see the [asynchronous example](examples/asynchronous_example.py).
 
 ## Documentation
 
-For more information on the 24Fire REST API, refer to the [original documentation](https://apidocs.24fire.de/).
+The API documentation can be found [here](https://apidocs.24fire.de/).
 
 ## Contributing
 
@@ -141,10 +115,10 @@ Contributions are welcome! If you encounter any issues or have suggestions for i
 
 ## License
 
-This project is licensed under the [AGPL v3 License](LICENSE).
+This project is licensed under the [MIT License](LICENSE).
 
 ## Alert
 
-**Non-Permissive License**
+### Non-Permissive License
 
 I noticed that this project uses a license which requires less permissive conditions such as disclosing the source code, stating changes, or redistributing the source under the same license. It is advised to further consult the license terms before use.
